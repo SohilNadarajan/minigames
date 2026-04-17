@@ -34,6 +34,45 @@ type Candidate = {
   modifier: RoundModifierType;
 };
 
+function modifierProbability(
+  gameDifficulty: GameDifficulty,
+  roundIndex1Based: number,
+  totalRounds: number
+): number {
+  const t = progress01(roundIndex1Based, totalRounds);
+  const base =
+    gameDifficulty === "easy"
+      ? 0.2 + 0.25 * t
+      : gameDifficulty === "medium"
+        ? 0.32 + 0.28 * t
+        : 0.45 + 0.35 * t;
+  // Light deterministic push so hard games don't go modifier-dry.
+  const cadenceBoost =
+    gameDifficulty === "hard" && t > 0.2 && roundIndex1Based % 3 === 0 ? 0.18 : 0;
+  return Math.max(0.05, Math.min(0.85, base + cadenceBoost));
+}
+
+function chooseCandidate(
+  candidates: Candidate[],
+  gameDifficulty: GameDifficulty,
+  roundIndex1Based: number,
+  totalRounds: number
+): Candidate | null {
+  if (candidates.length === 0) return null;
+  const wantModifier = Math.random() < modifierProbability(gameDifficulty, roundIndex1Based, totalRounds);
+  const weighted = candidates.map((c) => {
+    const isModifier = c.modifier !== "none";
+    const modifierMatchBoost = wantModifier ? (isModifier ? 1.15 : 0.35) : isModifier ? 0.7 : 1.0;
+    const typeBoost =
+      c.modifier === "translate" ? 1.05 : c.modifier === "rotate" ? 1.0 : 1.0;
+    return {
+      item: c,
+      weight: Math.max(0.01, modifierMatchBoost * typeBoost),
+    };
+  });
+  return pickByWeight(weighted) ?? candidates[0]!;
+}
+
 function pickByWeight<T>(items: { item: T; weight: number }[]): T | null {
   const total = items.reduce((s, x) => s + Math.max(0, x.weight), 0);
   if (total <= 0) return null;
@@ -232,7 +271,20 @@ export function planRound(
 ): { puzzle: PuzzleDefinition; plan: RoundPlan } | null {
   const t = progress01(roundIndex1Based, totalRounds);
   const target = weightedTargetEffectiveDifficulty(settings.gameDifficulty, t);
-  const candidates = candidateProfiles(target, settings.gameDifficulty, t);
+  const candidatePool = candidateProfiles(target, settings.gameDifficulty, t);
+  const prioritized: Candidate[] = [];
+  const picked = chooseCandidate(
+    candidatePool,
+    settings.gameDifficulty,
+    roundIndex1Based,
+    totalRounds
+  );
+  if (picked) prioritized.push(picked);
+  for (const c of candidatePool) {
+    if (!prioritized.some((p) => p.base === c.base && p.modifier === c.modifier)) {
+      prioritized.push(c);
+    }
+  }
 
   let selected:
     | {
@@ -242,7 +294,7 @@ export function planRound(
       }
     | null = null;
 
-  for (const candidate of candidates) {
+  for (const candidate of prioritized) {
     const effective = fromIndex(
       diffIndex(candidate.base) + (candidate.modifier === "none" ? 0 : 1)
     );
