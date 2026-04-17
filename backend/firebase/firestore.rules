@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // DEV / MVP: permissive rules so local play works quickly.
+    // Replace with authenticated rules before any public launch.
+    match /rooms/{roomId} {
+      allow read, write: if true;
+
+      match /players/{playerId} {
+        allow read, write: if true;
+      }
+    }
+  }
+}

@@ -1,0 +1,4920 @@
+{
+  "version": 3,
+  "puzzles": [
+    {
+      "id": "easy-01",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 4,
+      "modifiers": {
+        "displayMs": 7850,
+        "floatingAmplitude": 5,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 0.98
+      }
+    },
+    {
+      "id": "easy-02",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 5,
+      "modifiers": {
+        "displayMs": 8100,
+        "floatingAmplitude": 6,
+        "rotationDeg": 1,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.06
+      }
+    },
+    {
+      "id": "easy-03",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 6,
+      "modifiers": {
+        "displayMs": 8350,
+        "floatingAmplitude": 7,
+        "rotationDeg": 2,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.14
+      }
+    },
+    {
+      "id": "easy-04",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 4,
+      "modifiers": {
+        "displayMs": 8600,
+        "floatingAmplitude": 8,
+        "rotationDeg": 0,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.22
+      }
+    },
+    {
+      "id": "easy-05",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "correctAnswer": 5,
+      "modifiers": {
+        "displayMs": 7600,
+        "floatingAmplitude": 4,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.3
+      }
+    },
+    {
+      "id": "easy-06",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 4,
+      "modifiers": {
+        "displayMs": 7850,
+        "floatingAmplitude": 5,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 0.9,
+        "shiftAmplitude": 7
+      }
+    },
+    {
+      "id": "easy-07",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 6,
+      "modifiers": {
+        "displayMs": 8100,
+        "floatingAmplitude": 6,
+        "rotationDeg": 1,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 0.98
+      }
+    },
+    {
+      "id": "easy-08",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 8350,
+        "floatingAmplitude": 7,
+        "rotationDeg": 2,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.06
+      }
+    },
+    {
+      "id": "easy-09",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 4,
+      "modifiers": {
+        "displayMs": 8600,
+        "floatingAmplitude": 8,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.14
+      }
+    },
+    {
+      "id": "easy-10",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 5,
+      "modifiers": {
+        "displayMs": 7600,
+        "floatingAmplitude": 4,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.22
+      }
+    },
+    {
+      "id": "easy-11",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 7850,
+        "floatingAmplitude": 5,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.3
+      }
+    },
+    {
+      "id": "easy-12",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          2,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 8100,
+        "floatingAmplitude": 6,
+        "rotationDeg": 1,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 0.9,
+        "shiftAmplitude": 8
+      }
+    },
+    {
+      "id": "easy-13",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 8350,
+        "floatingAmplitude": 7,
+        "rotationDeg": 2,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 0.98
+      }
+    },
+    {
+      "id": "easy-14",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "correctAnswer": 6,
+      "modifiers": {
+        "displayMs": 8600,
+        "floatingAmplitude": 8,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.06
+      }
+    },
+    {
+      "id": "easy-15",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 6,
+      "modifiers": {
+        "displayMs": 7600,
+        "floatingAmplitude": 4,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.14
+      }
+    },
+    {
+      "id": "easy-16",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 7850,
+        "floatingAmplitude": 5,
+        "rotationDeg": 0,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.22
+      }
+    },
+    {
+      "id": "easy-17",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 8100,
+        "floatingAmplitude": 6,
+        "rotationDeg": 1,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.3
+      }
+    },
+    {
+      "id": "easy-18",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          2,
+          0,
+          2
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 8350,
+        "floatingAmplitude": 7,
+        "rotationDeg": 2,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 0.9,
+        "shiftAmplitude": 9
+      }
+    },
+    {
+      "id": "easy-19",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 7,
+      "modifiers": {
+        "displayMs": 8600,
+        "floatingAmplitude": 8,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 0.98
+      }
+    },
+    {
+      "id": "easy-20",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "correctAnswer": 7,
+      "modifiers": {
+        "displayMs": 7600,
+        "floatingAmplitude": 4,
+        "rotationDeg": 0,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.06
+      }
+    },
+    {
+      "id": "easy-21",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 7,
+      "modifiers": {
+        "displayMs": 7850,
+        "floatingAmplitude": 5,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.14
+      }
+    },
+    {
+      "id": "easy-22",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 8100,
+        "floatingAmplitude": 6,
+        "rotationDeg": 1,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.22
+      }
+    },
+    {
+      "id": "easy-23",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 7,
+      "modifiers": {
+        "displayMs": 8350,
+        "floatingAmplitude": 7,
+        "rotationDeg": 2,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.3
+      }
+    },
+    {
+      "id": "easy-24",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 4,
+      "modifiers": {
+        "displayMs": 8600,
+        "floatingAmplitude": 8,
+        "rotationDeg": 0,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 0.9,
+        "shiftAmplitude": 10
+      }
+    },
+    {
+      "id": "easy-25",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 7600,
+        "floatingAmplitude": 4,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 0.98
+      }
+    },
+    {
+      "id": "easy-26",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 4,
+      "modifiers": {
+        "displayMs": 7850,
+        "floatingAmplitude": 5,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.06
+      }
+    },
+    {
+      "id": "easy-27",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 5,
+      "modifiers": {
+        "displayMs": 8100,
+        "floatingAmplitude": 6,
+        "rotationDeg": 1,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.14
+      }
+    },
+    {
+      "id": "easy-28",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "correctAnswer": 5,
+      "modifiers": {
+        "displayMs": 8350,
+        "floatingAmplitude": 7,
+        "rotationDeg": 2,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.22
+      }
+    },
+    {
+      "id": "easy-29",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      "correctAnswer": 7,
+      "modifiers": {
+        "displayMs": 8600,
+        "floatingAmplitude": 8,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.3
+      }
+    },
+    {
+      "id": "easy-30",
+      "difficulty": "easy",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 7600,
+        "floatingAmplitude": 4,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 0.9,
+        "shiftAmplitude": 6
+      }
+    },
+    {
+      "id": "med-01",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 16,
+      "modifiers": {
+        "displayMs": 5780,
+        "floatingAmplitude": 9,
+        "rotationDeg": 2,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.23
+      }
+    },
+    {
+      "id": "med-02",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 5960,
+        "floatingAmplitude": 10,
+        "rotationDeg": 3,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.31,
+        "shiftAmplitude": 10
+      }
+    },
+    {
+      "id": "med-03",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 13,
+      "modifiers": {
+        "displayMs": 6140,
+        "floatingAmplitude": 11,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.39,
+        "shiftAmplitude": 11
+      }
+    },
+    {
+      "id": "med-04",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          2,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 14,
+      "modifiers": {
+        "displayMs": 6320,
+        "floatingAmplitude": 12,
+        "rotationDeg": 5,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.47
+      }
+    },
+    {
+      "id": "med-05",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 14,
+      "modifiers": {
+        "displayMs": 6500,
+        "floatingAmplitude": 13,
+        "rotationDeg": 1,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.55,
+        "shiftAmplitude": 13
+      }
+    },
+    {
+      "id": "med-06",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 12,
+      "modifiers": {
+        "displayMs": 5600,
+        "floatingAmplitude": 14,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.63,
+        "shiftAmplitude": 14
+      }
+    },
+    {
+      "id": "med-07",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 17,
+      "modifiers": {
+        "displayMs": 5780,
+        "floatingAmplitude": 15,
+        "rotationDeg": 2,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.71
+      }
+    },
+    {
+      "id": "med-08",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1,
+          1,
+          1
+        ]
+      ],
+      "correctAnswer": 12,
+      "modifiers": {
+        "displayMs": 5960,
+        "floatingAmplitude": 8,
+        "rotationDeg": 3,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.15,
+        "shiftAmplitude": 9
+      }
+    },
+    {
+      "id": "med-09",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 10,
+      "modifiers": {
+        "displayMs": 6140,
+        "floatingAmplitude": 9,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.23,
+        "shiftAmplitude": 10
+      }
+    },
+    {
+      "id": "med-10",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "correctAnswer": 13,
+      "modifiers": {
+        "displayMs": 6320,
+        "floatingAmplitude": 10,
+        "rotationDeg": 5,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.31
+      }
+    },
+    {
+      "id": "med-11",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          3
+        ]
+      ],
+      "correctAnswer": 16,
+      "modifiers": {
+        "displayMs": 6500,
+        "floatingAmplitude": 11,
+        "rotationDeg": 1,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.39,
+        "shiftAmplitude": 12
+      }
+    },
+    {
+      "id": "med-12",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 5600,
+        "floatingAmplitude": 12,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.47,
+        "shiftAmplitude": 13
+      }
+    },
+    {
+      "id": "med-13",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          2,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 15,
+      "modifiers": {
+        "displayMs": 5780,
+        "floatingAmplitude": 13,
+        "rotationDeg": 2,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.55
+      }
+    },
+    {
+      "id": "med-14",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          3,
+          3
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 17,
+      "modifiers": {
+        "displayMs": 5960,
+        "floatingAmplitude": 14,
+        "rotationDeg": 3,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.63,
+        "shiftAmplitude": 8
+      }
+    },
+    {
+      "id": "med-15",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          1,
+          2,
+          1,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 6140,
+        "floatingAmplitude": 15,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.71,
+        "shiftAmplitude": 9
+      }
+    },
+    {
+      "id": "med-16",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          3,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 17,
+      "modifiers": {
+        "displayMs": 6320,
+        "floatingAmplitude": 8,
+        "rotationDeg": 5,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.15
+      }
+    },
+    {
+      "id": "med-17",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 11,
+      "modifiers": {
+        "displayMs": 6500,
+        "floatingAmplitude": 9,
+        "rotationDeg": 1,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.23,
+        "shiftAmplitude": 11
+      }
+    },
+    {
+      "id": "med-18",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          2,
+          2,
+          3,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 15,
+      "modifiers": {
+        "displayMs": 5600,
+        "floatingAmplitude": 10,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.31,
+        "shiftAmplitude": 12
+      }
+    },
+    {
+      "id": "med-19",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 15,
+      "modifiers": {
+        "displayMs": 5780,
+        "floatingAmplitude": 11,
+        "rotationDeg": 2,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.39
+      }
+    },
+    {
+      "id": "med-20",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "correctAnswer": 10,
+      "modifiers": {
+        "displayMs": 5960,
+        "floatingAmplitude": 12,
+        "rotationDeg": 3,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.47,
+        "shiftAmplitude": 14
+      }
+    },
+    {
+      "id": "med-21",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 11,
+      "modifiers": {
+        "displayMs": 6140,
+        "floatingAmplitude": 13,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.55,
+        "shiftAmplitude": 8
+      }
+    },
+    {
+      "id": "med-22",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 6320,
+        "floatingAmplitude": 14,
+        "rotationDeg": 5,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.63
+      }
+    },
+    {
+      "id": "med-23",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          2
+        ]
+      ],
+      "correctAnswer": 13,
+      "modifiers": {
+        "displayMs": 6500,
+        "floatingAmplitude": 15,
+        "rotationDeg": 1,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.71,
+        "shiftAmplitude": 10
+      }
+    },
+    {
+      "id": "med-24",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 14,
+      "modifiers": {
+        "displayMs": 5600,
+        "floatingAmplitude": 8,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.15,
+        "shiftAmplitude": 11
+      }
+    },
+    {
+      "id": "med-25",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          0,
+          1
+        ]
+      ],
+      "correctAnswer": 12,
+      "modifiers": {
+        "displayMs": 5780,
+        "floatingAmplitude": 9,
+        "rotationDeg": 2,
+        "occlusion": "softVignette",
+        "canvasShift": false,
+        "floatSpeed": 1.23
+      }
+    },
+    {
+      "id": "med-26",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 8,
+      "modifiers": {
+        "displayMs": 5960,
+        "floatingAmplitude": 10,
+        "rotationDeg": 3,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.31,
+        "shiftAmplitude": 13
+      }
+    },
+    {
+      "id": "med-27",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          1,
+          1,
+          0
+        ]
+      ],
+      "correctAnswer": 11,
+      "modifiers": {
+        "displayMs": 6140,
+        "floatingAmplitude": 11,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.39,
+        "shiftAmplitude": 14
+      }
+    },
+    {
+      "id": "med-28",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 10,
+      "modifiers": {
+        "displayMs": 6320,
+        "floatingAmplitude": 12,
+        "rotationDeg": 5,
+        "occlusion": "none",
+        "canvasShift": false,
+        "floatSpeed": 1.47
+      }
+    },
+    {
+      "id": "med-29",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          2,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ]
+      ],
+      "correctAnswer": 16,
+      "modifiers": {
+        "displayMs": 6500,
+        "floatingAmplitude": 13,
+        "rotationDeg": 1,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "floatSpeed": 1.55,
+        "shiftAmplitude": 9
+      }
+    },
+    {
+      "id": "med-30",
+      "difficulty": "medium",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          1,
+          1,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "correctAnswer": 9,
+      "modifiers": {
+        "displayMs": 5600,
+        "floatingAmplitude": 14,
+        "rotationDeg": 0,
+        "occlusion": "none",
+        "canvasShift": true,
+        "floatSpeed": 1.63,
+        "shiftAmplitude": 10
+      }
+    },
+    {
+      "id": "hard-01",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          2,
+          1,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 14,
+      "modifiers": {
+        "displayMs": 3720,
+        "floatingAmplitude": 15,
+        "rotationDeg": 6,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 15,
+        "floatSpeed": 1.88
+      }
+    },
+    {
+      "id": "hard-02",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          3,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 13,
+      "modifiers": {
+        "displayMs": 3840,
+        "floatingAmplitude": 16,
+        "rotationDeg": 8,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 16,
+        "floatSpeed": 1.96
+      }
+    },
+    {
+      "id": "hard-03",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 24,
+      "modifiers": {
+        "displayMs": 3960,
+        "floatingAmplitude": 17,
+        "rotationDeg": 10,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 17,
+        "floatSpeed": 2.04
+      }
+    },
+    {
+      "id": "hard-04",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          2
+        ],
+        [
+          3,
+          0,
+          3,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          3,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 20,
+      "modifiers": {
+        "displayMs": 4080,
+        "floatingAmplitude": 18,
+        "rotationDeg": 7,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 18,
+        "floatSpeed": 2.12
+      }
+    },
+    {
+      "id": "hard-05",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          3,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          3,
+          0
+        ]
+      ],
+      "correctAnswer": 17,
+      "modifiers": {
+        "displayMs": 4200,
+        "floatingAmplitude": 19,
+        "rotationDeg": 9,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 19,
+        "floatSpeed": 2.2
+      }
+    },
+    {
+      "id": "hard-06",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          2,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 16,
+      "modifiers": {
+        "displayMs": 4320,
+        "floatingAmplitude": 20,
+        "rotationDeg": 5,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 20,
+        "floatSpeed": 2.28
+      }
+    },
+    {
+      "id": "hard-07",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          0,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 20,
+      "modifiers": {
+        "displayMs": 3600,
+        "floatingAmplitude": 21,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 21,
+        "floatSpeed": 2.36
+      }
+    },
+    {
+      "id": "hard-08",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          3,
+          0,
+          3,
+          3,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 24,
+      "modifiers": {
+        "displayMs": 3720,
+        "floatingAmplitude": 22,
+        "rotationDeg": 6,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 22,
+        "floatSpeed": 2.44
+      }
+    },
+    {
+      "id": "hard-09",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 16,
+      "modifiers": {
+        "displayMs": 3840,
+        "floatingAmplitude": 23,
+        "rotationDeg": 8,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 14,
+        "floatSpeed": 2.52
+      }
+    },
+    {
+      "id": "hard-10",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          1,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 14,
+      "modifiers": {
+        "displayMs": 3960,
+        "floatingAmplitude": 14,
+        "rotationDeg": 10,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 15,
+        "floatSpeed": 1.8
+      }
+    },
+    {
+      "id": "hard-11",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 15,
+      "modifiers": {
+        "displayMs": 4080,
+        "floatingAmplitude": 15,
+        "rotationDeg": 7,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 16,
+        "floatSpeed": 1.88
+      }
+    },
+    {
+      "id": "hard-12",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          3,
+          0
+        ]
+      ],
+      "correctAnswer": 19,
+      "modifiers": {
+        "displayMs": 4200,
+        "floatingAmplitude": 16,
+        "rotationDeg": 9,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 17,
+        "floatSpeed": 1.96
+      }
+    },
+    {
+      "id": "hard-13",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          3,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 18,
+      "modifiers": {
+        "displayMs": 4320,
+        "floatingAmplitude": 17,
+        "rotationDeg": 5,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 18,
+        "floatSpeed": 2.04
+      }
+    },
+    {
+      "id": "hard-14",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          3
+        ]
+      ],
+      "correctAnswer": 13,
+      "modifiers": {
+        "displayMs": 3600,
+        "floatingAmplitude": 18,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 19,
+        "floatSpeed": 2.12
+      }
+    },
+    {
+      "id": "hard-15",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          0,
+          2
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "correctAnswer": 20,
+      "modifiers": {
+        "displayMs": 3720,
+        "floatingAmplitude": 19,
+        "rotationDeg": 6,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 20,
+        "floatSpeed": 2.2
+      }
+    },
+    {
+      "id": "hard-16",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          2,
+          3
+        ],
+        [
+          2,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 19,
+      "modifiers": {
+        "displayMs": 3840,
+        "floatingAmplitude": 20,
+        "rotationDeg": 8,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 21,
+        "floatSpeed": 2.28
+      }
+    },
+    {
+      "id": "hard-17",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 24,
+      "modifiers": {
+        "displayMs": 3960,
+        "floatingAmplitude": 21,
+        "rotationDeg": 10,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 22,
+        "floatSpeed": 2.36
+      }
+    },
+    {
+      "id": "hard-18",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          2,
+          2,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          2,
+          0,
+          3
+        ]
+      ],
+      "correctAnswer": 22,
+      "modifiers": {
+        "displayMs": 4080,
+        "floatingAmplitude": 22,
+        "rotationDeg": 7,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 14,
+        "floatSpeed": 2.44
+      }
+    },
+    {
+      "id": "hard-19",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          3
+        ]
+      ],
+      "correctAnswer": 22,
+      "modifiers": {
+        "displayMs": 4200,
+        "floatingAmplitude": 23,
+        "rotationDeg": 9,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 15,
+        "floatSpeed": 2.52
+      }
+    },
+    {
+      "id": "hard-20",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          2,
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 21,
+      "modifiers": {
+        "displayMs": 4320,
+        "floatingAmplitude": 14,
+        "rotationDeg": 5,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 16,
+        "floatSpeed": 1.8
+      }
+    },
+    {
+      "id": "hard-21",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          3,
+          2,
+          0
+        ]
+      ],
+      "correctAnswer": 17,
+      "modifiers": {
+        "displayMs": 3600,
+        "floatingAmplitude": 15,
+        "rotationDeg": 4,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 17,
+        "floatSpeed": 1.88
+      }
+    },
+    {
+      "id": "hard-22",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 23,
+      "modifiers": {
+        "displayMs": 3720,
+        "floatingAmplitude": 16,
+        "rotationDeg": 6,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 18,
+        "floatSpeed": 1.96
+      }
+    },
+    {
+      "id": "hard-23",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          3,
+          3,
+          3
+        ]
+      ],
+      "correctAnswer": 16,
+      "modifiers": {
+        "displayMs": 3840,
+        "floatingAmplitude": 17,
+        "rotationDeg": 8,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 19,
+        "floatSpeed": 2.04
+      }
+    },
+    {
+      "id": "hard-24",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          1,
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          3,
+          0,
+          2
+        ]
+      ],
+      "correctAnswer": 18,
+      "modifiers": {
+        "displayMs": 3960,
+        "floatingAmplitude": 18,
+        "rotationDeg": 10,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 20,
+        "floatSpeed": 2.12
+      }
+    },
+    {
+      "id": "hard-25",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          0,
+          0,
+          2
+        ]
+      ],
+      "correctAnswer": 15,
+      "modifiers": {
+        "displayMs": 4080,
+        "floatingAmplitude": 19,
+        "rotationDeg": 7,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 21,
+        "floatSpeed": 2.2
+      }
+    },
+    {
+      "id": "hard-26",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          3,
+          0,
+          3
+        ]
+      ],
+      "correctAnswer": 23,
+      "modifiers": {
+        "displayMs": 4200,
+        "floatingAmplitude": 20,
+        "rotationDeg": 9,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 22,
+        "floatSpeed": 2.28
+      }
+    },
+    {
+      "id": "hard-27",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          3,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          3,
+          3
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 23,
+      "modifiers": {
+        "displayMs": 4320,
+        "floatingAmplitude": 21,
+        "rotationDeg": 5,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 14,
+        "floatSpeed": 2.36
+      }
+    },
+    {
+      "id": "hard-28",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          3,
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 21,
+      "modifiers": {
+        "displayMs": 3600,
+        "floatingAmplitude": 22,
+        "rotationDeg": 4,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 15,
+        "floatSpeed": 2.44
+      }
+    },
+    {
+      "id": "hard-29",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          2,
+          3,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 21,
+      "modifiers": {
+        "displayMs": 3720,
+        "floatingAmplitude": 23,
+        "rotationDeg": 6,
+        "occlusion": "softVignette",
+        "canvasShift": true,
+        "shiftAmplitude": 16,
+        "floatSpeed": 2.52
+      }
+    },
+    {
+      "id": "hard-30",
+      "difficulty": "hard",
+      "gridSize": {
+        "rows": 5,
+        "cols": 5
+      },
+      "grid": [
+        [
+          0,
+          3,
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "correctAnswer": 18,
+      "modifiers": {
+        "displayMs": 3840,
+        "floatingAmplitude": 14,
+        "rotationDeg": 8,
+        "occlusion": "none",
+        "canvasShift": true,
+        "shiftAmplitude": 17,
+        "floatSpeed": 1.8
+      }
+    }
+  ]
+}
