@@ -22,9 +22,17 @@ import {
 import { MAX_PLAYER_DISPLAY_NAME_LENGTH } from "../constants/player";
 import { getDb } from "./config";
 import type { FirestorePlayer, FirestoreRoom } from "./roomTypes";
-import type { GameDifficulty, RoomSettings } from "../gameEngine/types";
+import type { GameDifficulty, GameId, RoomSettings } from "../gameEngine/types";
+import {
+  colorGridConfigForDifficulty,
+  flattenCells,
+  generateColorGridBoard,
+  inflateCells,
+  randomIntersectionIndex,
+} from "../game/colorGrid";
 
 const CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+const COLOR_GRID_REVEAL_MS = 5000;
 
 export function generatePlayerId(): string {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -42,6 +50,8 @@ export function generateRoomCode(): string {
 }
 
 function normalizeRoomSettings(input?: Partial<RoomSettings>): RoomSettings {
+  const gameIdRaw = input?.gameId ?? DEFAULT_ROOM_SETTINGS.gameId;
+  const gameId: GameId = gameIdRaw === "color-grid" ? "color-grid" : "cube-count";
   const totalRoundsRaw = input?.totalRounds ?? DEFAULT_ROOM_SETTINGS.totalRounds;
   const totalRounds = [10, 20, 30].includes(totalRoundsRaw) ? totalRoundsRaw : 10;
   const gameDifficultyRaw = input?.gameDifficulty ?? DEFAULT_ROOM_SETTINGS.gameDifficulty;
@@ -53,6 +63,7 @@ function normalizeRoomSettings(input?: Partial<RoomSettings>): RoomSettings {
   return {
     ...DEFAULT_ROOM_SETTINGS,
     ...input,
+    gameId,
     totalRounds,
     gameDifficulty,
   };
@@ -95,6 +106,13 @@ export async function createRoom(
       usedPuzzleIds: [],
       settings,
       currentRoundPlan: null,
+      colorGridPalette: null,
+      colorGridCells: null,
+      colorGridRows: null,
+      colorGridCols: null,
+      currentIntersectionIndex: null,
+      roundWinnerPlayerId: null,
+      nextRoundAt: null,
       lastAnswer: null,
     };
     await setDoc(ref, room);
@@ -184,6 +202,21 @@ export async function submitRoundWithGuess(
     const pl = pSnap.data() as FirestorePlayer;
     if (pl.roundSubmitted) return;
     tx.update(ref, { guess: clamped, roundSubmitted: true });
+
+    const isColorGame = room.settings?.gameId === "color-grid";
+    if (!isColorGame) return;
+    const target = room.currentIntersectionIndex;
+    if (!Number.isInteger(target)) return;
+    if (clamped !== target) return;
+
+    tx.update(roomRef(code), {
+      submissionsLocked: true,
+      gameState: "round_reveal",
+      roundWinnerPlayerId: playerId,
+      nextRoundAt: Date.now() + COLOR_GRID_REVEAL_MS,
+      lastAnswer: target,
+    });
+    tx.update(ref, { score: pl.score + 1 });
   });
 }
 
@@ -204,10 +237,34 @@ export async function startGame(code: string, hostId: string): Promise<void> {
   }
 
   const settings = normalizeRoomSettings(room.settings);
-  const dataset = getPuzzleDataset();
-  const planned = planRound(dataset, settings, 1, settings.totalRounds, []);
-  if (!planned) throw new Error("No puzzles available");
-  const { puzzle, plan } = planned;
+  const isColorGame = settings.gameId === "color-grid";
+  let puzzleId: string | null = null;
+  let plan: FirestoreRoom["currentRoundPlan"] = null;
+  let lastAnswer: number | null = null;
+  let colorGridPalette: string[] | null = null;
+  let colorGridCells: number[] | null = null;
+  let colorGridRows: number | null = null;
+  let colorGridCols: number | null = null;
+  let currentIntersectionIndex: number | null = null;
+  let usedPuzzleId: string | null = null;
+
+  if (isColorGame) {
+    const cfg = colorGridConfigForDifficulty(settings.gameDifficulty);
+    const board = generateColorGridBoard(cfg);
+    currentIntersectionIndex = randomIntersectionIndex(board);
+    colorGridPalette = board.palette;
+    colorGridCells = flattenCells(board.cells);
+    colorGridRows = board.config.rows;
+    colorGridCols = board.config.cols;
+  } else {
+    const dataset = getPuzzleDataset();
+    const planned = planRound(dataset, settings, 1, settings.totalRounds, []);
+    if (!planned) throw new Error("No puzzles available");
+    puzzleId = planned.puzzle.id;
+    plan = planned.plan;
+    lastAnswer = planned.puzzle.correctAnswer;
+    usedPuzzleId = planned.puzzle.id;
+  }
 
   const now = Date.now();
   const batch = writeBatch(getDb());
@@ -224,14 +281,21 @@ export async function startGame(code: string, hostId: string): Promise<void> {
     gameState: "playing",
     currentRound: 1,
     totalRounds: settings.totalRounds,
-    currentPuzzleId: puzzle.id,
+    currentPuzzleId: puzzleId,
     roundStartedAt: now,
     roundEndsAt: null,
     submissionsLocked: false,
-    usedPuzzleIds: arrayUnion(puzzle.id),
+    usedPuzzleIds: usedPuzzleId ? arrayUnion(usedPuzzleId) : [],
     settings,
     currentRoundPlan: plan,
-    lastAnswer: puzzle.correctAnswer,
+    colorGridPalette,
+    colorGridCells,
+    colorGridRows,
+    colorGridCols,
+    currentIntersectionIndex,
+    roundWinnerPlayerId: null,
+    nextRoundAt: null,
+    lastAnswer,
   });
   await batch.commit();
 }
@@ -245,14 +309,46 @@ export async function lockRoundAndScore(
   if (!snap.exists()) return;
   const room = snap.data() as FirestoreRoom;
   if (room.hostId !== hostId) return;
-  if (room.gameState !== "playing") return;
-  if (room.submissionsLocked) return;
+  if (room.gameState !== "playing" || room.submissionsLocked) return;
+
+  const isColorGame = room.settings?.gameId === "color-grid";
+
+  const playersSnap = await getDocs(playersCol(code));
+
+  if (isColorGame) {
+    // Color Match Grid: if everyone has guessed and no one was correct,
+    // end the round with "No winner" and schedule the next tile.
+    const target = room.currentIntersectionIndex;
+    if (!Number.isInteger(target)) return;
+    const joiners = playersSnap.docs.filter((d) => d.id !== room.hostId);
+    if (joiners.length === 0) return;
+    const allSubmitted = joiners.every((d) => {
+      const pl = d.data() as FirestorePlayer;
+      return pl.roundSubmitted === true;
+    });
+    if (!allSubmitted) return;
+
+    const batch = writeBatch(getDb());
+    joiners.forEach((d) => {
+      batch.update(d.ref, { isReady: false });
+    });
+    batch.update(ref, {
+      submissionsLocked: true,
+      gameState: "round_reveal",
+      roundWinnerPlayerId: null,
+      nextRoundAt: Date.now() + COLOR_GRID_REVEAL_MS,
+      lastAnswer: target,
+    });
+    await batch.commit();
+    return;
+  }
+
+  // Cube-count game scoring.
   const puzzleId = room.currentPuzzleId;
   if (!puzzleId) return;
   const puzzle = getPuzzleById(puzzleId);
   if (!puzzle) return;
 
-  const playersSnap = await getDocs(playersCol(code));
   const batch = writeBatch(getDb());
   batch.update(ref, {
     submissionsLocked: true,
@@ -282,6 +378,8 @@ export async function advanceFromReveal(code: string, hostId: string): Promise<v
 
   const playersSnap = await getDocs(playersCol(code));
   const lastRound = room.currentRound >= room.totalRounds;
+  const settings = normalizeRoomSettings(room.settings);
+  const isColorGame = settings.gameId === "color-grid";
 
   if (lastRound) {
     await updateDoc(ref, {
@@ -289,6 +387,11 @@ export async function advanceFromReveal(code: string, hostId: string): Promise<v
       submissionsLocked: true,
       currentPuzzleId: null,
       currentRoundPlan: null,
+      currentIntersectionIndex: null,
+      colorGridRows: null,
+      colorGridCols: null,
+      roundWinnerPlayerId: null,
+      nextRoundAt: null,
       roundStartedAt: null,
       roundEndsAt: null,
     });
@@ -296,20 +399,40 @@ export async function advanceFromReveal(code: string, hostId: string): Promise<v
   }
 
   const nextRound = room.currentRound + 1;
-  const settings = normalizeRoomSettings(room.settings);
-  const dataset = getPuzzleDataset();
-  const planned = planRound(
-    dataset,
-    settings,
-    nextRound,
-    settings.totalRounds,
-    room.usedPuzzleIds ?? []
-  );
-  if (!planned) {
-    await updateDoc(ref, { gameState: "results", currentRoundPlan: null });
-    return;
+  let puzzleId: string | null = null;
+  let plan: FirestoreRoom["currentRoundPlan"] = null;
+  let usedPuzzleUpdate: unknown = null;
+  let lastAnswer: number | null = null;
+  let currentIntersectionIndex: number | null = null;
+
+  if (isColorGame) {
+    const board =
+      room.colorGridCells && room.colorGridPalette && room.colorGridRows && room.colorGridCols
+        ? {
+            config: colorGridConfigForDifficulty(settings.gameDifficulty),
+            palette: room.colorGridPalette,
+            cells: inflateCells(room.colorGridCells, room.colorGridRows, room.colorGridCols),
+          }
+        : generateColorGridBoard(colorGridConfigForDifficulty(settings.gameDifficulty));
+    currentIntersectionIndex = randomIntersectionIndex(board);
+  } else {
+    const dataset = getPuzzleDataset();
+    const planned = planRound(
+      dataset,
+      settings,
+      nextRound,
+      settings.totalRounds,
+      room.usedPuzzleIds ?? []
+    );
+    if (!planned) {
+      await updateDoc(ref, { gameState: "results", currentRoundPlan: null });
+      return;
+    }
+    puzzleId = planned.puzzle.id;
+    plan = planned.plan;
+    usedPuzzleUpdate = arrayUnion(planned.puzzle.id);
+    lastAnswer = planned.puzzle.correctAnswer;
   }
-  const { puzzle, plan } = planned;
   const now = Date.now();
   const batch = writeBatch(getDb());
   playersSnap.forEach((d) => {
@@ -319,14 +442,17 @@ export async function advanceFromReveal(code: string, hostId: string): Promise<v
     gameState: "playing",
     currentRound: nextRound,
     totalRounds: settings.totalRounds,
-    currentPuzzleId: puzzle.id,
+    currentPuzzleId: puzzleId,
     roundStartedAt: now,
     roundEndsAt: null,
     submissionsLocked: false,
-    usedPuzzleIds: arrayUnion(puzzle.id),
+    ...(usedPuzzleUpdate ? { usedPuzzleIds: usedPuzzleUpdate } : {}),
     settings,
     currentRoundPlan: plan,
-    lastAnswer: puzzle.correctAnswer,
+    currentIntersectionIndex,
+    roundWinnerPlayerId: null,
+    nextRoundAt: null,
+    lastAnswer,
   });
   await batch.commit();
 }

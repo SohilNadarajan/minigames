@@ -4,13 +4,14 @@ import { MAX_PLAYER_DISPLAY_NAME_LENGTH } from "../../constants/player";
 import { createRoom, joinRoom } from "../../firebase/roomService";
 import { getFirebaseApp } from "../../firebase/config";
 import { useLocalPlayerId } from "../../hooks/useLocalPlayerId";
-import type { GameDifficulty } from "../../gameEngine/types";
+import type { GameDifficulty, GameId } from "../../gameEngine/types";
 
 export function HomePage() {
   const navigate = useNavigate();
   const playerId = useLocalPlayerId();
   const [joinCode, setJoinCode] = useState("");
   const [joinName, setJoinName] = useState("");
+  const [createGameId, setCreateGameId] = useState<GameId>("cube-count");
   const [createRounds, setCreateRounds] = useState<10 | 20 | 30>(10);
   const [createDifficulty, setCreateDifficulty] = useState<GameDifficulty>("medium");
   const [busy, setBusy] = useState(false);
@@ -22,6 +23,7 @@ export function HomePage() {
     try {
       getFirebaseApp();
       const code = await createRoom(playerId, {
+        gameId: createGameId,
         totalRounds: createRounds,
         gameDifficulty: createDifficulty,
       });
@@ -57,10 +59,10 @@ export function HomePage() {
       <header className="text-center">
         <p className="text-sm tracking-wide text-slate-500">Brain-style party game</p>
         <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-          Box Count Party
+          Minigame Party
         </h1>
         <p className="mt-3 text-balance text-slate-600">
-          One shared screen shows the puzzle. Phones are controllers with + / – and Submit.
+          One shared screen hosts the game. Phones act as controllers.
         </p>
       </header>
 
@@ -73,9 +75,20 @@ export function HomePage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="text-lg font-bold text-slate-900">Host (TV / shared screen)</h2>
         <p className="mt-3 text-sm text-slate-600">
-          Create a room code for controllers to join. No host name needed.
+          Pick a game and settings, then create a room code for controllers to join.
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-3">
+        <label className="mt-4 block text-sm text-slate-700">
+          Game
+          <select
+            value={createGameId}
+            onChange={(e) => setCreateGameId(e.target.value as GameId)}
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-semibold text-slate-900"
+          >
+            <option value="cube-count">Count the Boxes</option>
+            <option value="color-grid">Color Match Grid</option>
+          </select>
+        </label>
+        <div className="mt-3 grid grid-cols-2 gap-3">
           <label className="text-sm text-slate-700">
             Rounds
             <select

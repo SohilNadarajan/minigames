@@ -1,5 +1,6 @@
 export type Difficulty = "easy" | "medium" | "hard";
 export type GameDifficulty = "easy" | "medium" | "hard";
+export type GameId = "cube-count" | "color-grid";
 
 export type OcclusionStyle = "none" | "softVignette";
 
@@ -47,6 +48,7 @@ export type GameFlowState =
   | "results";
 
 export type RoomSettings = {
+  gameId: GameId;
   totalRounds: number;
   gameDifficulty: GameDifficulty;
   startingLives: number;
@@ -54,6 +56,7 @@ export type RoomSettings = {
 };
 
 export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
+  gameId: "cube-count",
   totalRounds: 10,
   gameDifficulty: "medium",
   startingLives: 3,

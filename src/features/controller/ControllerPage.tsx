@@ -134,6 +134,7 @@ export function ControllerPage() {
   }
 
   const submitted = me.roundSubmitted === true;
+  const isColorGame = room.settings.gameId === "color-grid";
   const inputLocked =
     room.gameState !== "playing" || room.submissionsLocked || submitted;
 
@@ -145,14 +146,18 @@ export function ControllerPage() {
     setLocalGuess((g) => Math.max(0, Math.min(99, g + delta)));
   };
 
-  const onSubmitRound = async () => {
+  const submitGuess = async (guess: number) => {
     if (room.gameState !== "playing" || room.submissionsLocked || submitted) return;
     setError(null);
     try {
-      await submitRoundWithGuess(roomCode, playerId, localGuess);
+      await submitRoundWithGuess(roomCode, playerId, guess);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Submit failed");
     }
+  };
+
+  const onSubmitRound = async () => {
+    await submitGuess(localGuess);
   };
 
   const toggleReady = async () => {
@@ -176,6 +181,16 @@ export function ControllerPage() {
   };
 
   const inLobby = room.gameState === "lobby";
+  const colorRows = room.colorGridRows ?? 0;
+  const colorCols = room.colorGridCols ?? 0;
+  const colorChoiceCount = Math.max(0, (colorRows - 1) * (colorCols - 1));
+  const colorWinnerName = room.roundWinnerPlayerId
+    ? players.find((p) => p.id === room.roundWinnerPlayerId)?.data.name ?? null
+    : null;
+  const colorRevealCountdown =
+    room.gameState === "round_reveal" && room.nextRoundAt
+      ? Math.max(0, Math.ceil((room.nextRoundAt - Date.now()) / 1000))
+      : null;
 
   return (
     <div className="mx-auto flex min-h-full max-w-md flex-col px-3 py-4">
@@ -242,6 +257,47 @@ export function ControllerPage() {
       ) : null}
 
       {room.gameState === "playing" ? (
+        isColorGame ? (
+          <section className="mt-4 flex flex-1 flex-col gap-4">
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+              <p className="text-xs font-bold tracking-wide text-slate-500">SELECT INTERSECTION</p>
+              <p className="mt-1 text-sm text-slate-600">
+                Tap one number. Your selection locks immediately.
+              </p>
+              {submitted ? (
+                <p className="mt-2 text-sm font-semibold text-emerald-700">
+                  Locked: #{displayGuess}
+                </p>
+              ) : null}
+            </div>
+            <div
+              className="grid gap-2"
+              style={{
+                gridTemplateColumns: `repeat(${Math.min(6, Math.max(3, Math.ceil(Math.sqrt(colorChoiceCount))))}, minmax(0, 1fr))`,
+              }}
+            >
+              {Array.from({ length: colorChoiceCount }, (_, i) => i + 1).map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  disabled={inputLocked}
+                  onClick={() => {
+                    playClickSfx();
+                    setLocalGuess(n);
+                    void submitGuess(n);
+                  }}
+                  className={`rounded-xl border py-3 text-lg font-black shadow-sm disabled:opacity-40 ${
+                    submitted && me.guess === n
+                      ? "border-blue-500 bg-blue-50 text-blue-700"
+                      : "border-slate-300 bg-white text-slate-900"
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+          </section>
+        ) : (
         <section className="mt-4 flex flex-1 flex-col gap-4">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm">
             <p className="text-xs font-bold tracking-wide text-slate-500">YOUR GUESS</p>
@@ -281,9 +337,34 @@ export function ControllerPage() {
             {submitted ? "Submitted" : "Submit count"}
           </button>
         </section>
+        )
       ) : null}
 
       {room.gameState === "round_reveal" ? (
+        isColorGame ? (
+          <section className="mt-6 flex flex-1 flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p className="text-center text-sm font-bold text-slate-500">ROUND RESULT</p>
+            <p className="text-center text-lg font-bold text-slate-900">
+              {colorWinnerName ? `${colorWinnerName} scored!` : "No winner this round"}
+            </p>
+            <p className="text-center text-4xl font-black text-slate-900">
+              {me.guess || "—"}
+            </p>
+            <p className="text-center text-sm text-slate-600">
+              Your pick · intersection #{me.guess || "—"}
+            </p>
+            <div className="mt-2 grid grid-cols-2 gap-3 text-center">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-bold text-slate-500">POINTS</p>
+                <p className="text-3xl font-black text-slate-900">{me.score}</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-bold text-slate-500">NEXT TILE</p>
+                <p className="text-3xl font-black text-slate-900">{colorRevealCountdown ?? 0}s</p>
+              </div>
+            </div>
+          </section>
+        ) : (
         <section className="mt-6 flex flex-1 flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <p className="text-center text-sm font-bold text-slate-500">ROUND RESULT</p>
           <p className="text-center text-5xl font-black text-slate-900">{me.guess}</p>
@@ -318,6 +399,7 @@ export function ControllerPage() {
             Next round starts when everyone is ready.
           </p>
         </section>
+        )
       ) : null}
 
       {room.gameState === "results" ? (
@@ -327,7 +409,9 @@ export function ControllerPage() {
           <ol className="mt-2 space-y-2">
             {players
               .filter((p) => p.id !== room.hostId)
-              .sort((a, b) => a.data.score - b.data.score)
+              .sort((a, b) =>
+                isColorGame ? b.data.score - a.data.score : a.data.score - b.data.score
+              )
               .map((p, idx) => (
                 <li
                   key={p.id}

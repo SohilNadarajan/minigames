@@ -12,6 +12,7 @@ import type { FirestorePlayer, FirestoreRoom } from "../../firebase/roomTypes";
 import { getPuzzleById } from "../../gameEngine";
 import { useLocalPlayerId } from "../../hooks/useLocalPlayerId";
 import { playDingSfx } from "../../utils/sfx";
+import { getGoalTile, inflateCells } from "../../game/colorGrid";
 
 function countBlocksForPuzzleId(id: string): number {
   const p = getPuzzleById(id);
@@ -27,6 +28,26 @@ const POST_SUBMIT_HIDE_MS = 3000;
 const READY_COUNTDOWN_S = 5;
 
 type HostRevealStage = "guesses" | "reveal" | "awaiting_ready";
+
+function winnerName(
+  players: { id: string; data: FirestorePlayer }[],
+  id: string | null | undefined
+): string | null {
+  if (!id) return null;
+  return players.find((p) => p.id === id)?.data.name ?? null;
+}
+
+function intersectionLabelStyle(
+  row: number,
+  col: number,
+  rows: number,
+  cols: number
+){
+  return {
+    left: `${((col + 1) / cols) * 100}%`,
+    top: `${((row + 1) / rows) * 100}%`,
+  };
+}
 
 export function HostPage() {
   const { code = "" } = useParams();
@@ -107,6 +128,7 @@ export function HostPage() {
   }, [roomCode, playerId]);
 
   useEffect(() => {
+    if (room?.settings?.gameId === "color-grid") return;
     if (room?.gameState !== "playing" || !room.currentPuzzleId) return;
     const peekMs = room.currentRoundPlan?.peekMs ?? 3000;
     setPuzzlePeekVisible(true);
@@ -115,10 +137,15 @@ export function HostPage() {
   }, [room?.gameState, room?.currentRound, room?.currentPuzzleId, room?.currentRoundPlan?.peekMs]);
 
   useEffect(() => {
-    if (room?.gameState !== "playing" || !puzzlePeekVisible) return;
-    const id = window.setInterval(() => setAnimNowMs(Date.now()), 33);
+    const gameId = room?.settings?.gameId;
+    const shouldTick =
+      gameId === "color-grid"
+        ? room?.gameState === "playing" || room?.gameState === "round_reveal"
+        : room?.gameState === "playing";
+    if (!shouldTick || !puzzlePeekVisible) return;
+    const id = window.setInterval(() => setAnimNowMs(Date.now()), 200);
     return () => window.clearInterval(id);
-  }, [room?.gameState, puzzlePeekVisible]);
+  }, [room?.gameState, room?.settings?.gameId, puzzlePeekVisible]);
 
   const revealKey =
     room?.gameState === "round_reveal" && room.currentPuzzleId
@@ -126,6 +153,7 @@ export function HostPage() {
       : null;
 
   useEffect(() => {
+    if (roomRef.current?.settings?.gameId === "color-grid") return;
     if (!revealKey) {
       revealAnimStartedForKeyRef.current = null;
       return;
@@ -140,6 +168,7 @@ export function HostPage() {
   }, [revealKey]);
 
   useEffect(() => {
+    if (roomRef.current?.settings?.gameId === "color-grid") return;
     if (!revealKey || hostRevealStage !== "reveal") return;
     if (playerId !== roomRef.current?.hostId) return;
     if (revealAnimStartedForKeyRef.current === revealKey) return;
@@ -201,6 +230,7 @@ export function HostPage() {
   }, [revealKey, hostRevealStage, roomCode, playerId]);
 
   useEffect(() => {
+    if (roomRef.current?.settings?.gameId === "color-grid") return;
     if (hostRevealStage !== "awaiting_ready") return;
     if (room?.gameState !== "round_reveal") return;
     if (playerId !== roomRef.current?.hostId) return;
@@ -219,6 +249,7 @@ export function HostPage() {
   }, [hostRevealStage, room?.gameState, players, roomCode, playerId]);
 
   useEffect(() => {
+    if (roomRef.current?.settings?.gameId === "color-grid") return;
     if (hostRevealStage !== "awaiting_ready") return;
     if (readyCountdownS == null) return;
     if (readyCountdownS > 0) {
@@ -231,6 +262,26 @@ export function HostPage() {
       setError(e instanceof Error ? e.message : "Advance failed")
     );
   }, [hostRevealStage, readyCountdownS, roomCode, playerId]);
+
+  useEffect(() => {
+    if (room?.settings?.gameId !== "color-grid") return;
+    if (room.gameState !== "round_reveal") return;
+    if (playerId !== room.hostId) return;
+    if (!room.nextRoundAt) return;
+    const delay = room.nextRoundAt - Date.now();
+    if (delay <= 0) {
+      void advanceFromReveal(roomCode, playerId).catch((e) =>
+        setError(e instanceof Error ? e.message : "Advance failed")
+      );
+      return;
+    }
+    const tid = window.setTimeout(() => {
+      void advanceFromReveal(roomCode, playerId).catch((e) =>
+        setError(e instanceof Error ? e.message : "Advance failed")
+      );
+    }, delay + 40);
+    return () => window.clearTimeout(tid);
+  }, [room?.settings?.gameId, room?.gameState, room?.nextRoundAt, playerId, roomCode, room?.hostId]);
 
   const puzzle = useMemo(() => {
     const id = room?.currentPuzzleId;
@@ -287,6 +338,7 @@ export function HostPage() {
   }
 
   const joiners = players.filter((p) => p.id !== room.hostId);
+  const isColorGame = room.settings.gameId === "color-grid";
   const joinersByGolf = joiners.slice().sort((a, b) => a.data.score - b.data.score);
   const joinersByName = joiners.slice().sort((a, b) => a.data.name.localeCompare(b.data.name));
   const submittedCount = joiners.filter((p) => p.data.roundSubmitted === true).length;
@@ -305,7 +357,13 @@ export function HostPage() {
 
   const motion = (() => {
     const plan = room.currentRoundPlan;
-    if (room.gameState !== "playing" || !puzzlePeekVisible || !plan || !room.roundStartedAt) {
+    if (
+      isColorGame ||
+      room.gameState !== "playing" ||
+      !puzzlePeekVisible ||
+      !plan ||
+      !room.roundStartedAt
+    ) {
       return { offsetX: 0, offsetY: 0, rotationRad: 0 };
     }
     const elapsed = Math.max(0, animNowMs - room.roundStartedAt);
@@ -332,6 +390,36 @@ export function HostPage() {
     }
     return { offsetX: 0, offsetY: 0, rotationRad: 0 };
   })();
+
+  const colorRows = room.colorGridRows ?? 0;
+  const colorCols = room.colorGridCols ?? 0;
+  const colorChoiceCount = Math.max(0, (colorRows - 1) * (colorCols - 1));
+  const colorCellAspectClass =
+    room.settings.gameDifficulty === "hard" ? "aspect-[1/1]" : "aspect-[1/1]";
+  const colorGridMatrix =
+    room.colorGridCells && colorRows > 0 && colorCols > 0
+      ? inflateCells(room.colorGridCells, colorRows, colorCols)
+      : null;
+  const colorGoalTile =
+    colorGridMatrix && room.colorGridPalette && room.currentIntersectionIndex
+      ? getGoalTile(
+          {
+            config: {
+              rows: colorRows,
+              cols: colorCols,
+              colorCount: room.colorGridPalette.length,
+            },
+            palette: room.colorGridPalette,
+            cells: colorGridMatrix,
+          },
+          room.currentIntersectionIndex
+        )
+      : null;
+  const revealWinnerName = winnerName(players, room.roundWinnerPlayerId);
+  const revealCountdownS =
+    room.gameState === "round_reveal" && room.nextRoundAt
+      ? Math.max(0, Math.ceil((room.nextRoundAt - animNowMs) / 1000))
+      : null;
 
   return (
     <div className="mx-auto flex min-h-[100dvh] max-w-6xl flex-col gap-4 px-3 py-4">
@@ -411,7 +499,186 @@ export function HostPage() {
         </section>
       ) : null}
 
-      {room.gameState === "playing" && puzzle ? (
+      {isColorGame && room.gameState === "playing" && colorGridMatrix && room.colorGridPalette ? (
+        <section className="flex flex-1 flex-col gap-3">
+          <div className="flex items-end justify-between gap-3">
+            <div>
+              <p className="text-xs font-bold tracking-wide text-slate-500">ROUND</p>
+              <p className="text-4xl font-black text-slate-900">
+                {room.currentRound}/{room.totalRounds}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs font-bold tracking-wide text-slate-500">INTERSECTIONS</p>
+              <p className="text-2xl font-black text-slate-900">{colorChoiceCount}</p>
+            </div>
+          </div>
+          <div className="grid gap-3 lg:grid-cols-[1fr_260px]">
+            <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+              <div className="relative">
+                <div
+                  className="grid gap-1"
+                  style={{
+                    gridTemplateColumns: `repeat(${colorCols || 1}, minmax(0, 1fr))`,
+                  }}
+                >
+                  {colorGridMatrix.flatMap((row, r) =>
+                    row.map((idx, c) => (
+                      <div
+                        key={`${r}-${c}`}
+                        className={`${colorCellAspectClass} rounded-sm`}
+                        style={{ backgroundColor: room.colorGridPalette?.[idx] ?? "#ddd" }}
+                      />
+                    ))
+                  )}
+                </div>
+                <div className="pointer-events-none absolute inset-0">
+                  {Array.from({ length: colorChoiceCount }, (_, i) => {
+                    const idx1 = i + 1;
+                    const rr = Math.floor(i / (colorCols - 1));
+                    const cc = i % (colorCols - 1);
+                    return (
+                      <div
+                        key={`label-play-${idx1}`}
+                        className="absolute -translate-x-1/2 -translate-y-1/2 rounded-md border border-white/60 bg-white/45 px-1.5 py-0.5 text-[10px] font-bold text-slate-900/85 backdrop-blur-[1px]"
+                        style={intersectionLabelStyle(rr, cc, colorRows, colorCols)}
+                      >
+                        {idx1}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-xs font-bold tracking-wide text-slate-500">GOAL TILE</p>
+              {colorGoalTile ? (
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {colorGoalTile.flatMap((row, r) =>
+                    row.map((idx, c) => (
+                      <div
+                        key={`goal-${r}-${c}`}
+                        className="aspect-square rounded-md"
+                        style={{ backgroundColor: room.colorGridPalette?.[idx] ?? "#ddd" }}
+                      />
+                    ))
+                  )}
+                </div>
+              ) : (
+                <p className="mt-2 text-sm text-slate-500">Waiting for tile…</p>
+              )}
+              <p className="mt-3 text-xs text-slate-500">
+                Players pick the matching intersection number on their phones.
+              </p>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p className="text-sm font-bold text-slate-700">Standings</p>
+            <ul className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {joinersByName.map((p) => (
+                <li
+                  key={p.id}
+                  className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-3 py-2"
+                >
+                  <span className="truncate font-semibold text-slate-900">{p.data.name}</span>
+                  <span className="text-xl font-black tabular-nums text-slate-900">{p.data.score}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
+      {isColorGame && room.gameState === "round_reveal" && colorGridMatrix && room.colorGridPalette ? (
+        <section className="flex flex-1 flex-col gap-3">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-center shadow-sm">
+            <p className="text-xs font-bold tracking-wide text-emerald-700">ROUND POINT</p>
+            <p className="text-xl font-black text-emerald-900">
+              {revealWinnerName ? `${revealWinnerName} scored!` : "No winner"}
+            </p>
+            {revealCountdownS != null && revealCountdownS > 0 ? (
+              <>
+                <p className="mt-1 text-sm font-semibold text-emerald-800">Next tile in</p>
+                <p className="text-4xl font-black tabular-nums leading-none text-emerald-900">
+                  {revealCountdownS}
+                </p>
+              </>
+            ) : (
+              <p className="mt-1 text-sm font-semibold text-emerald-800">Next tile…</p>
+            )}
+          </div>
+          <div className="grid gap-3 lg:grid-cols-[1fr_260px]">
+            <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+              <div className="relative">
+                <div
+                  className="grid gap-1"
+                  style={{
+                    gridTemplateColumns: `repeat(${colorCols || 1}, minmax(0, 1fr))`,
+                  }}
+                >
+                  {colorGridMatrix.flatMap((row, r) =>
+                    row.map((idx, c) => (
+                      <div
+                        key={`${r}-${c}`}
+                        className={`${colorCellAspectClass} rounded-sm`}
+                        style={{ backgroundColor: room.colorGridPalette?.[idx] ?? "#ddd" }}
+                      />
+                    ))
+                  )}
+                </div>
+                <div className="pointer-events-none absolute inset-0">
+                  {Array.from({ length: colorChoiceCount }, (_, i) => {
+                    const idx1 = i + 1;
+                    const rr = Math.floor(i / (colorCols - 1));
+                    const cc = i % (colorCols - 1);
+                    return (
+                      <div
+                        key={`label-reveal-${idx1}`}
+                        className="absolute -translate-x-1/2 -translate-y-1/2 rounded-md border border-white/60 bg-white/45 px-1.5 py-0.5 text-[10px] font-bold text-slate-900/85 backdrop-blur-[1px]"
+                        style={intersectionLabelStyle(rr, cc, colorRows, colorCols)}
+                      >
+                        {idx1}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-xs font-bold tracking-wide text-slate-500">GOAL TILE</p>
+              {colorGoalTile ? (
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {colorGoalTile.flatMap((row, r) =>
+                    row.map((idx, c) => (
+                      <div
+                        key={`goal-rv-${r}-${c}`}
+                        className="aspect-square rounded-md"
+                        style={{ backgroundColor: room.colorGridPalette?.[idx] ?? "#ddd" }}
+                      />
+                    ))
+                  )}
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p className="text-sm font-bold text-slate-700">Selections this round</p>
+            <ul className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {joinersByName.map((p) => (
+                <li
+                  key={p.id}
+                  className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-3 py-2"
+                >
+                  <span className="truncate font-semibold text-slate-900">{p.data.name}</span>
+                  <span className="font-black tabular-nums text-slate-900">{p.data.guess || "—"}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
+      {!isColorGame && room.gameState === "playing" && puzzle ? (
         <section className="flex flex-1 flex-col gap-3">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -506,7 +773,7 @@ export function HostPage() {
         </section>
       ) : null}
 
-      {room.gameState === "round_reveal" && puzzle ? (
+      {!isColorGame && room.gameState === "round_reveal" && puzzle ? (
         <section className="flex flex-col gap-3">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -628,7 +895,9 @@ export function HostPage() {
           <ol className="mt-5 space-y-3">
             {joiners
               .slice()
-              .sort((a, b) => a.data.score - b.data.score)
+              .sort((a, b) =>
+                isColorGame ? b.data.score - a.data.score : a.data.score - b.data.score
+              )
               .map((p, idx) => (
                 <li
                   key={p.id}

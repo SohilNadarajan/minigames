@@ -15,6 +15,13 @@ export type FirestoreRoom = {
   usedPuzzleIds: string[];
   settings: RoomSettings;
   currentRoundPlan?: RoundPlan | null;
+  colorGridPalette?: string[] | null;
+  colorGridCells?: number[] | null;
+  colorGridRows?: number | null;
+  colorGridCols?: number | null;
+  currentIntersectionIndex?: number | null;
+  roundWinnerPlayerId?: string | null;
+  nextRoundAt?: number | null;
   lastAnswer: number | null;
 };
 
