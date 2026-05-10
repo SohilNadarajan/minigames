@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MAX_PLAYER_DISPLAY_NAME_LENGTH } from "../../constants/player";
 import {
+  fetchPlayers,
+  fetchRoom,
   joinRoom,
   setPlayerReady,
   submitRoundWithGuess,
@@ -40,6 +42,46 @@ export function ControllerPage() {
     };
   }, [roomCode]);
 
+  // Force a manual resync whenever the tab becomes visible again or the
+  // network reconnects. Firestore listeners can silently fall behind on
+  // mobile after the screen sleeps, which previously left the controller
+  // stuck on a stale lobby/round_reveal state until the page was reloaded.
+  useEffect(() => {
+    if (!roomCode) return;
+    let cancelled = false;
+    const resync = () => {
+      void (async () => {
+        try {
+          const [r, list] = await Promise.all([
+            fetchRoom(roomCode),
+            fetchPlayers(roomCode),
+          ]);
+          if (cancelled) return;
+          if (r !== null) setRoom(r);
+          if (list) {
+            setPlayers(list);
+            setHasPlayersSnap(true);
+          }
+        } catch {
+          // best-effort; the snapshot listener will catch up on its own
+        }
+      })();
+    };
+    const onVisible = () => {
+      if (document.visibilityState === "visible") resync();
+    };
+    const onOnline = () => resync();
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("online", onOnline);
+    window.addEventListener("focus", resync);
+    return () => {
+      cancelled = true;
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("online", onOnline);
+      window.removeEventListener("focus", resync);
+    };
+  }, [roomCode]);
+
   const me = useMemo(
     () => players.find((p) => p.id === playerId)?.data,
     [players, playerId]
@@ -47,13 +89,22 @@ export function ControllerPage() {
   const meRef = useRef(me);
   meRef.current = me;
 
+  // Round sync key — used to reset local guess state between rounds.
+  // Must work for BOTH games: cube-count (uses currentPuzzleId) and
+  // color-grid (uses currentIntersectionIndex).
   const playingRoundSyncKey =
-    room?.gameState === "playing" && room.currentPuzzleId != null
-      ? `${room.currentRound}|${room.currentPuzzleId}|${me?.roundSubmitted === true ? "s" : "o"}`
+    room?.gameState === "playing"
+      ? `${room.currentRound}|${room.currentPuzzleId ?? "_"}|${
+          room.currentIntersectionIndex ?? "_"
+        }|${me?.roundSubmitted === true ? "s" : "o"}`
       : "";
 
   useEffect(() => {
     if (!room || room === null) return;
+    // Wait until we have a real players snapshot before deciding the
+    // player is missing; otherwise we can race the host's writeBatch and
+    // overwrite the player doc with default lobby state.
+    if (!hasPlayersSnap) return;
     if (me) return;
     if (playerId === room.hostId) return;
     let cancelled = false;
@@ -69,7 +120,7 @@ export function ControllerPage() {
     return () => {
       cancelled = true;
     };
-  }, [room, me, roomCode, playerId]);
+  }, [room, me, roomCode, playerId, hasPlayersSnap]);
 
   useEffect(() => {
     if (!me) return;

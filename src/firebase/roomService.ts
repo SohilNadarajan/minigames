@@ -155,7 +155,17 @@ export async function joinRoom(
     );
     return;
   }
-  await setDoc(playerRef(normalized, playerId), {
+  const pRef = playerRef(normalized, playerId);
+  const pSnap = await getDoc(pRef);
+  if (pSnap.exists()) {
+    // Player already in this room — only update the display name.
+    // Do NOT reset isReady/score/etc, otherwise it can clobber a
+    // round/lobby state already in flight (which manifests as the
+    // controller appearing "stuck" until reload).
+    await updateDoc(pRef, { name: displayName });
+    return;
+  }
+  await setDoc(pRef, {
     name: displayName,
     guess: 0,
     score: 0,
@@ -457,35 +467,101 @@ export async function advanceFromReveal(code: string, hostId: string): Promise<v
   await batch.commit();
 }
 
+/**
+ * Subscribes to a room with auto-resubscribe on stream errors.
+ * Firestore's long-lived listeners can silently drop on mobile (sleep,
+ * network change, etc.). When that happens, re-attach the listener so the
+ * UI doesn't get stuck on stale data.
+ */
 export function subscribeRoom(
   code: string,
   onData: (room: FirestoreRoom | null) => void
 ): Unsubscribe {
-  return onSnapshot(roomRef(code), (s) => {
-    if (!s.exists()) {
-      onData(null);
-      return;
-    }
-    onData(s.data() as FirestoreRoom);
-  });
+  let active = true;
+  let inner: Unsubscribe | null = null;
+
+  const attach = () => {
+    if (!active) return;
+    inner = onSnapshot(
+      roomRef(code),
+      (s) => {
+        if (!s.exists()) {
+          onData(null);
+          return;
+        }
+        onData(s.data() as FirestoreRoom);
+      },
+      (err) => {
+        console.warn("subscribeRoom error, resubscribing", err);
+        if (inner) {
+          inner();
+          inner = null;
+        }
+        if (active) {
+          window.setTimeout(attach, 1000);
+        }
+      }
+    );
+  };
+  attach();
+
+  return () => {
+    active = false;
+    if (inner) inner();
+  };
 }
 
 export function subscribePlayers(
   code: string,
   onData: (players: { id: string; data: FirestorePlayer }[]) => void
 ): Unsubscribe {
-  const q = query(playersCol(code));
-  return onSnapshot(q, (snap) => {
-    const list = snap.docs.map((d) => ({
-      id: d.id,
-      data: d.data() as FirestorePlayer,
-    }));
-    onData(list);
-  });
+  let active = true;
+  let inner: Unsubscribe | null = null;
+
+  const attach = () => {
+    if (!active) return;
+    const q = query(playersCol(code));
+    inner = onSnapshot(
+      q,
+      (snap) => {
+        const list = snap.docs.map((d) => ({
+          id: d.id,
+          data: d.data() as FirestorePlayer,
+        }));
+        onData(list);
+      },
+      (err) => {
+        console.warn("subscribePlayers error, resubscribing", err);
+        if (inner) {
+          inner();
+          inner = null;
+        }
+        if (active) {
+          window.setTimeout(attach, 1000);
+        }
+      }
+    );
+  };
+  attach();
+
+  return () => {
+    active = false;
+    if (inner) inner();
+  };
 }
 
 export async function fetchRoom(code: string): Promise<FirestoreRoom | null> {
   const snap = await getDoc(roomRef(code));
   if (!snap.exists()) return null;
   return snap.data() as FirestoreRoom;
+}
+
+export async function fetchPlayers(
+  code: string
+): Promise<{ id: string; data: FirestorePlayer }[]> {
+  const snap = await getDocs(playersCol(code));
+  return snap.docs.map((d) => ({
+    id: d.id,
+    data: d.data() as FirestorePlayer,
+  }));
 }
